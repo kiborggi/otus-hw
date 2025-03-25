@@ -1,6 +1,8 @@
 plugins {
+    idea
     id("java")
     id("com.github.johnrengelman.shadow") version "8.1.1"
+    id("io.spring.dependency-management") version "1.1.7"
 }
 
 group = "ru.otus.hw"
@@ -10,14 +12,33 @@ repositories {
     mavenCentral()
 }
 
-dependencies {
-    testImplementation(platform("org.junit:junit-bom:5.10.0"))
-    testImplementation("org.junit.jupiter:junit-jupiter")
+java {
+    toolchain {
+        languageVersion.set(JavaLanguageVersion.of(21))
+    }
+}
+allprojects {
+    group = "ru.otus.hw"
+
+    val guava: String by project
+
+
+    repositories {
+        mavenLocal()
+        mavenCentral()
+    }
+
+    apply(plugin = "io.spring.dependency-management")
+    dependencyManagement {
+        dependencies {
+            dependency("com.google.guava:guava:$guava")
+        }
+    }
+
 }
 
-
 tasks {
-    build{
+    build {
         dependsOn(subprojects.map { it.tasks.named("shadowJar") })
     }
 }
@@ -27,14 +48,10 @@ tasks.test {
 }
 
 subprojects {
-    apply(plugin = "java") // Подключаем плагин Java во всех дочерних модулях
+    apply(plugin = "java")
 
     repositories {
         mavenCentral()
     }
 
-    dependencies {
-        // Используем версию Guava из gradle.properties
-        implementation("com.google.guava:guava:${project.findProperty("guava")}")
-    }
 }
