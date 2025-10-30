@@ -21,6 +21,9 @@ allprojects {
     group = "ru.otus.hw"
 
     val guava: String by project
+    val lombok: String by project
+    val slf4jApi: String by project
+    val logbackVersion: String by project
 
 
     repositories {
@@ -32,6 +35,10 @@ allprojects {
     dependencyManagement {
         dependencies {
             dependency("com.google.guava:guava:$guava")
+            dependency("org.projectlombok:lombok:$lombok")
+            dependency("org.slf4j:slf4j-api:$slf4jApi")
+            dependency("ch.qos.logback:logback-classic:$logbackVersion")
+
         }
     }
 
