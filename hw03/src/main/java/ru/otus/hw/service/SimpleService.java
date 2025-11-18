@@ -5,9 +5,9 @@ import ru.otus.hw.annotation.Test;
 
 public class SimpleService {
 
-    /*public SimpleService(String s){
+    public SimpleService(String s){
 
-    }*/
+    }
 
     @Test
     public void performAction1(){

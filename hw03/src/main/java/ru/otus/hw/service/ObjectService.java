@@ -12,12 +12,12 @@ public class ObjectService {
 
     @Before
     private void initObject(){
-       // object = "This is the object";
+        object = "This is the object";
     }
 
     @Test
     private void performAction(){
-        System.out.println(object.toString());
+       String a = object.toString();
     }
 
     @After

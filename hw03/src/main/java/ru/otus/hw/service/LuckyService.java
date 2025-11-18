@@ -10,14 +10,19 @@ import java.util.Random;
 public class LuckyService {
     private final Random random;
 
+    private int i;
+
     public LuckyService(){
         random = new Random();
     }
 
     @Before
-    public void luckyMethod(){
-        int i = random.nextInt(10);
+    public void beforeMethod(){
+        i = random.nextInt(15);
+    }
 
+    @Test
+    public void luckyMethod(){
         if (i <= 5){
             throw new RuntimeException("not lucky enough");
         }
@@ -27,18 +32,14 @@ public class LuckyService {
     public void luckyMethod2(){
         int i = random.nextInt(30);
 
-        if (i <= 5){
-            throw new RuntimeException("not lucky enough");
+        if (i <= 10){
+            throw new RuntimeException("not lucky enough 2");
         }
     }
 
     @After
-    public void luckyMethod3(){
-        int i = random.nextInt(100);
+    public void afterMethod(){
 
-        if (i <= 5){
-            throw new RuntimeException("not lucky enough");
-        }
     }
 
 }
