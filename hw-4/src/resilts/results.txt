@@ -1,0 +1,9 @@
+Before code change: 256m опитмально
+128m     spend msec:61253, sec:61
+256m     spend msec:49062, sec:49 -- optimal value
+512m     spend msec:48321, sec:48 -- optimal value(?)
+1024m    spend msec:56920, sec:48
+After code change:
+8m       spend msec:28651, sec:28 -9k pauses with afg time ~ 0.07ms -- optimal (выставляю меньше, всё равно аллоцируется 8 метров)
+16m      spend msec:29810, sec:29 -3.5k pauses with avg time ~ 0.1ms
+32m      spend msec:28024, sec:28
